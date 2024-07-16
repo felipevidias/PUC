@@ -1,0 +1,59 @@
+#! /usr/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+S_0x5cc27a46c850 .scope module, "test_LU" "test_LU" 2 21;
+ .timescale 0 0;
+v0x5cc27a491be0_0 .var "A", 4 0;
+v0x5cc27a491cc0_0 .var "B", 4 0;
+v0x5cc27a491d60_0 .var "chave", 0 0;
+v0x5cc27a491e60_0 .net "desigualdade", 0 0, L_0x5cc27a4921b0;  1 drivers
+v0x5cc27a491f30_0 .net "igualdade", 0 0, L_0x5cc27a492020;  1 drivers
+S_0x5cc27a46c9e0 .scope module, "UUT" "LU" 2 28, 2 5 0, S_0x5cc27a46c850;
+ .timescale 0 0;
+    .port_info 0 /INPUT 5 "A";
+    .port_info 1 /INPUT 5 "B";
+    .port_info 2 /INPUT 1 "chave";
+    .port_info 3 /OUTPUT 1 "igualdade";
+    .port_info 4 /OUTPUT 1 "desigualdade";
+L_0x5cc27a46b9b0 .functor NOT 1, L_0x5cc27a492020, C4<0>, C4<0>, C4<0>;
+v0x5cc27a47d6d0_0 .net "A", 4 0, v0x5cc27a491be0_0;  1 drivers
+v0x5cc27a491710_0 .net "B", 4 0, v0x5cc27a491cc0_0;  1 drivers
+v0x5cc27a4917f0_0 .net *"_ivl_2", 0 0, L_0x5cc27a46b9b0;  1 drivers
+v0x5cc27a4918b0_0 .net "chave", 0 0, v0x5cc27a491d60_0;  1 drivers
+v0x5cc27a491970_0 .net "desigualdade", 0 0, L_0x5cc27a4921b0;  alias, 1 drivers
+v0x5cc27a491a80_0 .net "igualdade", 0 0, L_0x5cc27a492020;  alias, 1 drivers
+L_0x5cc27a492020 .cmp/eq 5, v0x5cc27a491be0_0, v0x5cc27a491cc0_0;
+L_0x5cc27a4921b0 .functor MUXZ 1, L_0x5cc27a492020, L_0x5cc27a46b9b0, v0x5cc27a491d60_0, C4<>;
+    .scope S_0x5cc27a46c850;
+T_0 ;
+    %vpi_call 2 32 "$display", "Guia_0807 - Unidade L\303\263gica" {0 0 0};
+    %vpi_call 2 33 "$display", "Teste da Unidade L\303\263gica" {0 0 0};
+    %pushi/vec4 21, 0, 5;
+    %store/vec4 v0x5cc27a491be0_0, 0, 5;
+    %pushi/vec4 21, 0, 5;
+    %store/vec4 v0x5cc27a491cc0_0, 0, 5;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5cc27a491d60_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 41 "$display", "A igual a B (igualdade): %b, Desigualdade: %b", v0x5cc27a491f30_0, v0x5cc27a491e60_0 {0 0 0};
+    %pushi/vec4 21, 0, 5;
+    %store/vec4 v0x5cc27a491be0_0, 0, 5;
+    %pushi/vec4 10, 0, 5;
+    %store/vec4 v0x5cc27a491cc0_0, 0, 5;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5cc27a491d60_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 48 "$display", "A diferente de B (desigualdade): %b, Igualdade: %b", v0x5cc27a491e60_0, v0x5cc27a491f30_0 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "Guia_0807.v";

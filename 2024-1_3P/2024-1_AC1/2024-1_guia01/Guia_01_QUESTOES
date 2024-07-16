@@ -1,0 +1,60 @@
+2024-1_ARQ1 ---------------03/02/2024---------------817294_Felipe_Vilhena_Dias----------------Guia_01
+
+QUESTÕES: 
+
+1a.) 
+a) 10111
+b) 111001
+c) 1011011100
+d) 101000001
+e) 101101100
+
+2a.)
+a) 19
+b) 29
+c) 22
+d) 45
+e) 51
+
+3a.)
+a) 1003
+b) 72
+c) 48
+d) 9D
+e) 2DF
+
+4a.)
+a) 113
+b) 36
+c) 25
+d) 53
+e) 230
+
+5a.) 
+a) "PUC-M.G." = X (16_ASCII) Convertendo cada caractere para seu código ASCII
+correspondente, temos: P: 80, U: 85, C: 67, -: 45, M: 77, .: 46, G: 71 Portanto, a representação
+ASCII seria: 80 85 67 45 77 46 71 E em hexadecimal (base 16), isso seria: 50 55 43 2D 4D 2E 47
+Assim, a resposta para a questão a é: X = 50 55 43 2D 4D 2E 47 (16_ASCII)
+
+b) "2024-01" = X (16_ASCII) Convertendo cada caractere para seu código ASCII correspondente,
+temos: 2: 50, 0: 48, 2: 50, 4: 52, -: 45, 0: 48, 1: 49 Portanto, a representação ASCII seria: 50 48 50
+52 45 48 49 E em hexadecimal (base 16), isso seria: 32 30 32 34 2D 30 31 Assim, a resposta para a
+questão b é: X = 32 30 32 34 2D 30 31 (16_ASCII)
+
+c) "Minas Gerais" = X (2_ASCII) Convertendo cada caractere para seu código ASCII
+correspondente, temos: M: 77, i: 105, n: 110, a: 97, s: 115, (espaço): 32, G: 71, e: 101, r: 114, a: 97,
+i: 105, s: 115 Portanto, a representação ASCII seria: 77 105 110 97 115 32 71 101 114 97 105 115 E
+em binário (base 2), isso seria: 1001101 1101001 1101110 1100001 1110011 100000 1000111
+1100101 1110010 1100001 1101001 1110011 Assim, a resposta para a questão c é: X = 1001101
+1101001 1101110 1100001 1110011 100000 1000111 1100101 1110010 1100001 1101001 1110011
+(2_ASCII)
+
+d) (116 117 111 124 105)Base 8 = X (ASCII) Convertendo cada número octal para seu caractere
+ASCII correspondente, temos: 116: t, 117: u, 111: o, 124: |, 105: i Portanto, a representação ASCII
+seria: tuoi| Assim, a resposta para a questão d é: X = tuoi| (ASCII)
+
+e) (54 61 72 64 65)Base 16 = X (ASCII) Convertendo cada par de números hexadecimais para seu
+caractere ASCII correspondente, temos: 54: T, 61: a, 72: r, 64: d, 65: e Portanto, a representação
+ASCII seria: Tarde Assim, a resposta para a questão e é: X = Tarde (ASCII)
+
+  

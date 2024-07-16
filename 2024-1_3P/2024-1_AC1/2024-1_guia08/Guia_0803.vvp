@@ -1,0 +1,52 @@
+#! /usr/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+S_0x63f72e831ee0 .scope module, "test_comparator" "test_comparator" 2 15;
+ .timescale 0 0;
+v0x63f72e844ef0_0 .net "equal_terms", 0 0, L_0x63f72e845190;  1 drivers
+v0x63f72e844fc0_0 .var "x", 4 0;
+v0x63f72e845090_0 .var "y", 4 0;
+S_0x63f72e832070 .scope module, "COMPARE" "comparator" 2 22, 2 6 0, S_0x63f72e831ee0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 5 "a";
+    .port_info 1 /INPUT 5 "b";
+    .port_info 2 /OUTPUT 1 "equal";
+v0x63f72e7fa7b0_0 .net "a", 4 0, v0x63f72e844fc0_0;  1 drivers
+v0x63f72e7faba0_0 .net "b", 4 0, v0x63f72e845090_0;  1 drivers
+v0x63f72e844dd0_0 .net "equal", 0 0, L_0x63f72e845190;  alias, 1 drivers
+L_0x63f72e845190 .cmp/eq 5, v0x63f72e844fc0_0, v0x63f72e845090_0;
+    .scope S_0x63f72e831ee0;
+T_0 ;
+    %vpi_call 2 26 "$display", "Guia_0801 - Felipe Vilhena Dias - 817294" {0 0 0};
+    %vpi_call 2 27 "$display", "Teste do comparador de termos" {0 0 0};
+    %pushi/vec4 10, 0, 5;
+    %store/vec4 v0x63f72e844fc0_0, 0, 5;
+    %pushi/vec4 10, 0, 5;
+    %store/vec4 v0x63f72e845090_0, 0, 5;
+    %delay 10, 0;
+    %vpi_call 2 34 "$display", "Igualdade para x=5 e y=5: %b", v0x63f72e844ef0_0 {0 0 0};
+    %pushi/vec4 10, 0, 5;
+    %store/vec4 v0x63f72e844fc0_0, 0, 5;
+    %pushi/vec4 5, 0, 5;
+    %store/vec4 v0x63f72e845090_0, 0, 5;
+    %delay 10, 0;
+    %vpi_call 2 40 "$display", "Igualdade para x=5 e y=10: %b", v0x63f72e844ef0_0 {0 0 0};
+    %pushi/vec4 15, 0, 5;
+    %store/vec4 v0x63f72e844fc0_0, 0, 5;
+    %pushi/vec4 9, 0, 5;
+    %store/vec4 v0x63f72e845090_0, 0, 5;
+    %delay 10, 0;
+    %vpi_call 2 46 "$display", "Igualdade para x=15 e y=9: %b", v0x63f72e844ef0_0 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "Guia_0803.v";

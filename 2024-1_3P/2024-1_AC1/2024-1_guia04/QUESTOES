@@ -1,0 +1,61 @@
+2024-1_guia04    81794_Felipe_Vilhena_Dias  01/03/2024
+
+QUESTÕES: 
+
+2.)
+a) x . ( x' + y' )' = [ (x . x') + (x . y') ]
+b) ( x' + y ) + ( x . y ) = [ Já esta simplicada ]
+c) ( x' . y )' . ( x + y' ) = ( x' + y' ) . ( x + y') = [ y' + ( x . x' ) ]
+d) ( x' . y' )' + ( x' + y' )' = ( x + y ) + ( x . y ) = [ x + y ]
+e) ( y + x' )' . ( y' + x ) = (y' . x) . ( y . x') = (x . x') . ( y . y') = 0 . 0 = [0]
+
+( y' .  x'') e x'' = x 
+
+
+3.) 
+	2	  5 	     6		7
+a) (x'.y.z') + (x.y'.z) + (x.y.z') + (x.y.z) = 1
+	1	  3	     6  	7
+b) (x'.y'.z) + (x'.y.z) + (x.y.z') + (x.y.z) = 1 
+	1		2		4		6 		7		12	   15
+c) (x'.y'.z'.w) + (x'.y'.z.w') + (x'.y.z'.w')  +  ( x'.y.z.w')  + (x'.y.z.w)  +  ( x.y.z'.w') + (x.y.z.w) 
+	1		2		5		8 		10		12	   13
+d) (x'.y'.z'.w) + (x'.y'.z.w') + (x'.y.z'.w)  +  ( x'.y.z.w)  + (x'.y.z.w)  +  ( x.y.z'.w') + (x.y.z'.w) 
+	0		2		5		7 		9		13	   
+e) (x'.y'.z'.w') + (x'.y'.z.w') + (x'.y.z'.w)  +  ( x'.y.z'.w')  + (x.y'.z'.w)  +  ( x.y.z'.w) 
+
+
+4.)
+	1	    5		6	    7
+a)   (X+Y+Z') . (X'+Y+Z') . (X'+Y'+Z) . (X'+Y'+Z')
+	0	    4		5	    7
+b)   (X+Y+Z) . (X'+Y+Z) . (X'+Y+Z') . (X'+Y'+Z')
+	0	    1		2	    5			6	  8	       11	   13
+c)   (X+Y+Z+W) . (X+Y+Z+W') . (X+Y+Z'+W) . (X+Y'+Z+W') . (X+Y'+Z'+W) . (X'+Y+Z+W) . (X'+Y+Z'+W') . (X'+Y'+Z+W') 
+	1	    2		4	        6		8         9             14
+d)   (X+Y+Z+W') . (X'+Y+Z'+W) . (X+Y'+Z+W) . (X+Y'+Z'+W) . (X'+Y+Z+W) . (X'+Y+Z+W') . (X'+Y'+Z'+W) 
+	0	    1		2	        3		5         10           11
+e)   (X+Y+Z+W) . (X+Y+Z+W') . (X+Y+Z'+W) . (X+Y+Z'+W') . (X+Y'+Z+W') . (X'+Y+Z'+W) . (X'+Y+Z'+W') 
+
+
+5.)
+
+a) F(x,y,z) = SoP(1,3)
+   F(X,Y,Z) = PoS(0,2)
+  
+b) F(x,y,z) = SoP(0,1,3)
+   F(X,Y,Z) = PoS(2)
+  
+c) F(x,y,z) = SoP(0,1,3,4,6,7)
+   F(X,Y,Z) = PoS(2,5)
+  
+d) F(x,y,z) = SoP(0,2,4,5,6)
+   F(X,Y,Z) = PoS(1,3,7)
+  
+6.) F(x,y,z) = SoP(2)
+
+7.) F(X,Y,Z) = PoS(2,8)
+
+e) F(x,w,y,z) = SoP(0,1,3,4,5,8,9,10,14,15)
+   F(X,W,Y,Z) = PoS(2,6,7,11,12,13)
+  

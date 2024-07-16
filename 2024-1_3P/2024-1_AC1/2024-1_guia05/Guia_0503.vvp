@@ -1,0 +1,52 @@
+#! /usr/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+S_0x558a3c90ed90 .scope module, "porta_NOR" "porta_NOR" 2 7;
+ .timescale 0 0;
+L_0x558a3c95a2f0 .functor OR 1, v0x558a3c95a190_0, v0x558a3c95a230_0, C4<0>, C4<0>;
+L_0x558a3c95a410 .functor NOT 1, L_0x558a3c95a2f0, C4<0>, C4<0>, C4<0>;
+v0x558a3c90ef20_0 .net "NOR_out", 0 0, L_0x558a3c95a410;  1 drivers
+v0x558a3c95a0d0_0 .net *"_ivl_1", 0 0, L_0x558a3c95a2f0;  1 drivers
+v0x558a3c95a190_0 .var "a", 0 0;
+v0x558a3c95a230_0 .var "b", 0 0;
+    .scope S_0x558a3c90ed90;
+T_0 ;
+    %vpi_call 2 19 "$display", "NOR para fun\303\247\303\243o (~a || b): " {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x558a3c95a190_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x558a3c95a230_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 24 "$display", "a = %b e b = %b | NOR = %b", v0x558a3c95a190_0, v0x558a3c95a230_0, v0x558a3c90ef20_0 {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x558a3c95a190_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x558a3c95a230_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 30 "$display", "a = %b e b = %b | NOR = %b", v0x558a3c95a190_0, v0x558a3c95a230_0, v0x558a3c90ef20_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x558a3c95a190_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x558a3c95a230_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 36 "$display", "a = %b e b = %b | NOR = %b", v0x558a3c95a190_0, v0x558a3c95a230_0, v0x558a3c90ef20_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x558a3c95a190_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x558a3c95a230_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 42 "$display", "a = %b e b = %b | NOR = %b", v0x558a3c95a190_0, v0x558a3c95a230_0, v0x558a3c90ef20_0 {0 0 0};
+    %vpi_call 2 45 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "Guia_0503.v";

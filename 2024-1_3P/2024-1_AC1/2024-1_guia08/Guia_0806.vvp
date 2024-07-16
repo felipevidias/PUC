@@ -1,0 +1,181 @@
+#! /usr/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+S_0x629ae1326ee0 .scope module, "test_AU" "test_AU" 2 57;
+ .timescale 0 0;
+v0x629ae135b200_0 .var "A", 4 0;
+v0x629ae135b2e0_0 .var "B", 4 0;
+v0x629ae135b380_0 .var "chave", 0 0;
+v0x629ae135b450_0 .net "diferente", 0 0, L_0x629ae132e420;  1 drivers
+v0x629ae135b520_0 .net "igual", 0 0, L_0x629ae135b690;  1 drivers
+v0x629ae135b5c0_0 .net "resultado", 4 0, L_0x629ae135ba60;  1 drivers
+S_0x629ae132c530 .scope module, "UUT" "AU" 2 65, 2 21 0, S_0x629ae1326ee0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 5 "A";
+    .port_info 1 /INPUT 5 "B";
+    .port_info 2 /INPUT 1 "chave";
+    .port_info 3 /OUTPUT 5 "resultado";
+    .port_info 4 /OUTPUT 1 "igual";
+    .port_info 5 /OUTPUT 1 "diferente";
+L_0x629ae132e420 .functor NOT 1, L_0x629ae135b690, C4<0>, C4<0>, C4<0>;
+L_0x629ae132f860 .functor NOT 5, v0x629ae135b2e0_0, C4<00000>, C4<00000>, C4<00000>;
+L_0x629ae135b9f0 .functor BUFZ 1, v0x629ae135b380_0, C4<0>, C4<0>, C4<0>;
+L_0x629ae135d770 .functor BUFZ 5, L_0x629ae135d3b0, C4<00000>, C4<00000>, C4<00000>;
+v0x629ae135a7d0_0 .net "A", 4 0, v0x629ae135b200_0;  1 drivers
+v0x629ae135a8d0_0 .net "B", 4 0, v0x629ae135b2e0_0;  1 drivers
+v0x629ae135a9b0_0 .net *"_ivl_4", 4 0, L_0x629ae132f860;  1 drivers
+RS_0x7c44e4a2d0d8 .resolv tri, L_0x629ae135b9f0, L_0x629ae135bc80, L_0x629ae135bd90, L_0x629ae135c120, L_0x629ae135c230, L_0x629ae135c530, L_0x629ae135c640, L_0x629ae135cb90, L_0x629ae135cca0, L_0x629ae135cff0, L_0x629ae135d100;
+v0x629ae135aa70_0 .net8 "carryOut", 0 0, RS_0x7c44e4a2d0d8;  11 drivers
+v0x629ae135ab10_0 .net "chave", 0 0, v0x629ae135b380_0;  1 drivers
+v0x629ae135abb0_0 .net "complemento", 4 0, L_0x629ae135b870;  1 drivers
+v0x629ae135ac90_0 .net "diferenca", 4 0, L_0x629ae135d770;  1 drivers
+v0x629ae135ad70_0 .net "diferente", 0 0, L_0x629ae132e420;  alias, 1 drivers
+v0x629ae135ae30_0 .net "igual", 0 0, L_0x629ae135b690;  alias, 1 drivers
+v0x629ae135af80_0 .net "resultado", 4 0, L_0x629ae135ba60;  alias, 1 drivers
+v0x629ae135b060_0 .net "soma", 4 0, L_0x629ae135d3b0;  1 drivers
+L_0x629ae135b690 .cmp/eq 5, v0x629ae135b200_0, v0x629ae135b2e0_0;
+L_0x629ae135b870 .functor MUXZ 5, L_0x629ae132f860, v0x629ae135b2e0_0, v0x629ae135b380_0, C4<>;
+L_0x629ae135ba60 .functor MUXZ 5, L_0x629ae135d3b0, L_0x629ae135d770, v0x629ae135b380_0, C4<>;
+L_0x629ae135be30 .part v0x629ae135b200_0, 0, 1;
+L_0x629ae135bf00 .part L_0x629ae135b870, 0, 1;
+L_0x629ae135c2d0 .part v0x629ae135b200_0, 1, 1;
+L_0x629ae135c3b0 .part L_0x629ae135b870, 1, 1;
+L_0x629ae135c6e0 .part v0x629ae135b200_0, 2, 1;
+L_0x629ae135c7d0 .part L_0x629ae135b870, 2, 1;
+L_0x629ae135cd40 .part v0x629ae135b200_0, 3, 1;
+L_0x629ae135ce40 .part L_0x629ae135b870, 3, 1;
+RS_0x7c44e4a2d108 .resolv tri, L_0x629ae135bb20, L_0x629ae135bbc0;
+RS_0x7c44e4a2d2b8 .resolv tri, L_0x629ae135bff0, L_0x629ae135c060;
+RS_0x7c44e4a2d468 .resolv tri, L_0x629ae135c450, L_0x629ae135c4c0;
+RS_0x7c44e4a2d618 .resolv tri, L_0x629ae135c870, L_0x629ae135c910;
+LS_0x629ae135d3b0_0_0 .concat8 [ 1 1 1 1], RS_0x7c44e4a2d108, RS_0x7c44e4a2d2b8, RS_0x7c44e4a2d468, RS_0x7c44e4a2d618;
+RS_0x7c44e4a2d7c8 .resolv tri, L_0x629ae135cee0, L_0x629ae135cf80;
+LS_0x629ae135d3b0_0_4 .concat8 [ 1 0 0 0], RS_0x7c44e4a2d7c8;
+L_0x629ae135d3b0 .concat8 [ 4 1 0 0], LS_0x629ae135d3b0_0_0, LS_0x629ae135d3b0_0_4;
+L_0x629ae135d7e0 .part v0x629ae135b200_0, 4, 1;
+L_0x629ae135d880 .part L_0x629ae135b870, 4, 1;
+S_0x629ae132b590 .scope module, "FA0" "fullAdder" 2 46, 2 7 0, S_0x629ae132c530;
+ .timescale 0 0;
+    .port_info 0 /OUTPUT 1 "s";
+    .port_info 1 /OUTPUT 1 "co";
+    .port_info 2 /INPUT 1 "a";
+    .port_info 3 /INPUT 1 "b";
+    .port_info 4 /INPUT 1 "ci";
+L_0x629ae135bb20 .functor XOR 1, L_0x629ae135be30, L_0x629ae135bf00, C4<0>, C4<0>;
+L_0x629ae135bbc0 .functor XOR 1, RS_0x7c44e4a2d108, v0x629ae135b380_0, C4<0>, C4<0>;
+L_0x629ae135bc80 .functor AND 1, L_0x629ae135be30, L_0x629ae135bf00, C4<1>, C4<1>;
+o0x7c44e4a2d018 .functor BUFZ 1, C4<z>; HiZ drive
+L_0x629ae135bd90 .functor AND 1, v0x629ae135b380_0, o0x7c44e4a2d018, C4<1>, C4<1>;
+v0x629ae13290d0_0 .net "XOR1", 0 0, o0x7c44e4a2d018;  0 drivers
+v0x629ae1328030_0 .net "a", 0 0, L_0x629ae135be30;  1 drivers
+v0x629ae1358720_0 .net "b", 0 0, L_0x629ae135bf00;  1 drivers
+v0x629ae13587c0_0 .net "ci", 0 0, v0x629ae135b380_0;  alias, 1 drivers
+v0x629ae1358880_0 .net8 "co", 0 0, RS_0x7c44e4a2d0d8;  alias, 11 drivers
+v0x629ae1358990_0 .net8 "s", 0 0, RS_0x7c44e4a2d108;  2 drivers
+S_0x629ae1358af0 .scope module, "FA1" "fullAdder" 2 47, 2 7 0, S_0x629ae132c530;
+ .timescale 0 0;
+    .port_info 0 /OUTPUT 1 "s";
+    .port_info 1 /OUTPUT 1 "co";
+    .port_info 2 /INPUT 1 "a";
+    .port_info 3 /INPUT 1 "b";
+    .port_info 4 /INPUT 1 "ci";
+L_0x629ae135bff0 .functor XOR 1, L_0x629ae135c2d0, L_0x629ae135c3b0, C4<0>, C4<0>;
+L_0x629ae135c060 .functor XOR 1, RS_0x7c44e4a2d2b8, v0x629ae135b380_0, C4<0>, C4<0>;
+L_0x629ae135c120 .functor AND 1, L_0x629ae135c2d0, L_0x629ae135c3b0, C4<1>, C4<1>;
+o0x7c44e4a2d228 .functor BUFZ 1, C4<z>; HiZ drive
+L_0x629ae135c230 .functor AND 1, v0x629ae135b380_0, o0x7c44e4a2d228, C4<1>, C4<1>;
+v0x629ae1358cf0_0 .net "XOR1", 0 0, o0x7c44e4a2d228;  0 drivers
+v0x629ae1358db0_0 .net "a", 0 0, L_0x629ae135c2d0;  1 drivers
+v0x629ae1358e70_0 .net "b", 0 0, L_0x629ae135c3b0;  1 drivers
+v0x629ae1358f10_0 .net "ci", 0 0, v0x629ae135b380_0;  alias, 1 drivers
+v0x629ae1358fb0_0 .net8 "co", 0 0, RS_0x7c44e4a2d0d8;  alias, 11 drivers
+v0x629ae13590a0_0 .net8 "s", 0 0, RS_0x7c44e4a2d2b8;  2 drivers
+S_0x629ae13591c0 .scope module, "FA2" "fullAdder" 2 48, 2 7 0, S_0x629ae132c530;
+ .timescale 0 0;
+    .port_info 0 /OUTPUT 1 "s";
+    .port_info 1 /OUTPUT 1 "co";
+    .port_info 2 /INPUT 1 "a";
+    .port_info 3 /INPUT 1 "b";
+    .port_info 4 /INPUT 1 "ci";
+L_0x629ae135c450 .functor XOR 1, L_0x629ae135c6e0, L_0x629ae135c7d0, C4<0>, C4<0>;
+L_0x629ae135c4c0 .functor XOR 1, RS_0x7c44e4a2d468, v0x629ae135b380_0, C4<0>, C4<0>;
+L_0x629ae135c530 .functor AND 1, L_0x629ae135c6e0, L_0x629ae135c7d0, C4<1>, C4<1>;
+o0x7c44e4a2d3d8 .functor BUFZ 1, C4<z>; HiZ drive
+L_0x629ae135c640 .functor AND 1, v0x629ae135b380_0, o0x7c44e4a2d3d8, C4<1>, C4<1>;
+v0x629ae13593d0_0 .net "XOR1", 0 0, o0x7c44e4a2d3d8;  0 drivers
+v0x629ae1359490_0 .net "a", 0 0, L_0x629ae135c6e0;  1 drivers
+v0x629ae1359550_0 .net "b", 0 0, L_0x629ae135c7d0;  1 drivers
+v0x629ae1359620_0 .net "ci", 0 0, v0x629ae135b380_0;  alias, 1 drivers
+v0x629ae1359710_0 .net8 "co", 0 0, RS_0x7c44e4a2d0d8;  alias, 11 drivers
+v0x629ae1359850_0 .net8 "s", 0 0, RS_0x7c44e4a2d468;  2 drivers
+S_0x629ae13599b0 .scope module, "FA3" "fullAdder" 2 49, 2 7 0, S_0x629ae132c530;
+ .timescale 0 0;
+    .port_info 0 /OUTPUT 1 "s";
+    .port_info 1 /OUTPUT 1 "co";
+    .port_info 2 /INPUT 1 "a";
+    .port_info 3 /INPUT 1 "b";
+    .port_info 4 /INPUT 1 "ci";
+L_0x629ae135c870 .functor XOR 1, L_0x629ae135cd40, L_0x629ae135ce40, C4<0>, C4<0>;
+L_0x629ae135c910 .functor XOR 1, RS_0x7c44e4a2d618, v0x629ae135b380_0, C4<0>, C4<0>;
+L_0x629ae135cb90 .functor AND 1, L_0x629ae135cd40, L_0x629ae135ce40, C4<1>, C4<1>;
+o0x7c44e4a2d588 .functor BUFZ 1, C4<z>; HiZ drive
+L_0x629ae135cca0 .functor AND 1, v0x629ae135b380_0, o0x7c44e4a2d588, C4<1>, C4<1>;
+v0x629ae1359b90_0 .net "XOR1", 0 0, o0x7c44e4a2d588;  0 drivers
+v0x629ae1359c70_0 .net "a", 0 0, L_0x629ae135cd40;  1 drivers
+v0x629ae1359d30_0 .net "b", 0 0, L_0x629ae135ce40;  1 drivers
+v0x629ae1359dd0_0 .net "ci", 0 0, v0x629ae135b380_0;  alias, 1 drivers
+v0x629ae1359e70_0 .net8 "co", 0 0, RS_0x7c44e4a2d0d8;  alias, 11 drivers
+v0x629ae1359f60_0 .net8 "s", 0 0, RS_0x7c44e4a2d618;  2 drivers
+S_0x629ae135a0c0 .scope module, "FA4" "fullAdder" 2 50, 2 7 0, S_0x629ae132c530;
+ .timescale 0 0;
+    .port_info 0 /OUTPUT 1 "s";
+    .port_info 1 /OUTPUT 1 "co";
+    .port_info 2 /INPUT 1 "a";
+    .port_info 3 /INPUT 1 "b";
+    .port_info 4 /INPUT 1 "ci";
+L_0x629ae135cee0 .functor XOR 1, L_0x629ae135d7e0, L_0x629ae135d880, C4<0>, C4<0>;
+L_0x629ae135cf80 .functor XOR 1, RS_0x7c44e4a2d7c8, v0x629ae135b380_0, C4<0>, C4<0>;
+L_0x629ae135cff0 .functor AND 1, L_0x629ae135d7e0, L_0x629ae135d880, C4<1>, C4<1>;
+o0x7c44e4a2d738 .functor BUFZ 1, C4<z>; HiZ drive
+L_0x629ae135d100 .functor AND 1, v0x629ae135b380_0, o0x7c44e4a2d738, C4<1>, C4<1>;
+v0x629ae135a2f0_0 .net "XOR1", 0 0, o0x7c44e4a2d738;  0 drivers
+v0x629ae135a3d0_0 .net "a", 0 0, L_0x629ae135d7e0;  1 drivers
+v0x629ae135a490_0 .net "b", 0 0, L_0x629ae135d880;  1 drivers
+v0x629ae135a530_0 .net "ci", 0 0, v0x629ae135b380_0;  alias, 1 drivers
+v0x629ae135a5d0_0 .net8 "co", 0 0, RS_0x7c44e4a2d0d8;  alias, 11 drivers
+v0x629ae135a670_0 .net8 "s", 0 0, RS_0x7c44e4a2d7c8;  2 drivers
+    .scope S_0x629ae1326ee0;
+T_0 ;
+    %vpi_call 2 69 "$display", "Guia_0806 - Unidade Aritm\303\251tica" {0 0 0};
+    %vpi_call 2 70 "$display", "Teste da Unidade Aritm\303\251tica" {0 0 0};
+    %pushi/vec4 21, 0, 5;
+    %store/vec4 v0x629ae135b200_0, 0, 5;
+    %pushi/vec4 14, 0, 5;
+    %store/vec4 v0x629ae135b2e0_0, 0, 5;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x629ae135b380_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 78 "$display", "Resultado para A=21, B=14, chave=0 (soma): %b", v0x629ae135b5c0_0 {0 0 0};
+    %vpi_call 2 79 "$display", "Igual: %b, Diferente: %b", v0x629ae135b520_0, v0x629ae135b450_0 {0 0 0};
+    %pushi/vec4 15, 0, 5;
+    %store/vec4 v0x629ae135b200_0, 0, 5;
+    %pushi/vec4 15, 0, 5;
+    %store/vec4 v0x629ae135b2e0_0, 0, 5;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x629ae135b380_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 86 "$display", "Resultado para A=15, B=15, chave=1 (subtra\303\247\303\243o): %b", v0x629ae135b5c0_0 {0 0 0};
+    %vpi_call 2 87 "$display", "Igual: %b, Diferente: %b", v0x629ae135b520_0, v0x629ae135b450_0 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "Guia_0806.v";
