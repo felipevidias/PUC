@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Controle de Estoque</title>
+    <script type="text/javascript">
+        function confirmarDeleteProduto(id, descricao, preco) {  
+            if (confirm('Confirmar a exclusão do produto [' + descricao + '] (ID ' + id + ') com preço R$ ' + preco)) {  
+                location.href = '/produto/delete/' + id;
+            }
+        }
+
+        function onLoad() {
+            if(document.getElementById("msg").value != ""){
+              alert(document.getElementById("msg").value);
+            }
+        }
+    </script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: white;
+        }
+
+        .input--main__style {
+            background-color: #00FF00;
+        }
+
+        .input--button {
+            font-weight: bold;
+            font-family: Arial;
+            font-size: medium;
+            border-color: transparent;
+            display: block;
+            margin: 0px auto;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .input--register {
+            display: inline;
+        }
+
+        input {
+            display: block;
+            border-radius: 7px;
+            padding: 10px;
+            border-style: solid;
+            border-color: lightgray;
+            color: black;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        form p {
+            text-align: initial;
+            display: inline;
+            margin-left: 15px;
+        }
+
+        .p--nomargin {
+            margin-left: 0px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body onload="onLoad()">
+    <h1>Controle de Estoque</h1>
+    <input type="hidden" id="msg" name="msg" value="">
+
+    <!-- Formulário de Inserção de Produto -->
+    <form class="form--register" action="/produto/insert" method="post" id="form-insert">
+        <table width="80%" bgcolor="#f3f3f3" align="center">
+            <tr>
+                <td colspan="3" align="left"><font size="+2"><b>&nbsp;&nbsp;&nbsp;Inserir Novo Produto</b></font></td>
+            </tr>
+            <tr>
+                <td>&nbsp;Descrição: <input class="input--register" type="text" name="descricao" placeholder="Digite a descrição"></td>
+                <td>Preço: <input class="input--register" type="text" name="preco" placeholder="Digite o preço"></td>
+                <td>Quantidade: <input class="input--register" type="text" name="quantidade" placeholder="Digite a quantidade"></td>
+            </tr>
+            <tr>
+                <td>&nbsp;Data de fabricação: <input class="input--register" type="text" name="dataFabricacao" placeholder="YYYY-MM-DD HH:MM:SS"></td>
+                <td>Data de validade: <input class="input--register" type="text" name="dataValidade" placeholder="YYYY-MM-DD"></td>
+                <td align="center"><input type="submit" value="Inserir" class="input--main__style input--button"></td>
+            </tr>
+        </table>
+    </form>
+
+    <!-- Lista de Produtos -->
+    <table width="80%" align="center" bgcolor="#f3f3f3">
+        <tr>
+            <td colspan="6" align="left"><font size="+2"><b>&nbsp;&nbsp;&nbsp;Relação de Produtos</b></font></td>
+        </tr>
+        <tr>
+            <td colspan="6">&nbsp;</td>
+        </tr>
+        <tr>
+            <td><b>ID</b></td>
+            <td><b>Descrição</b></td>
+            <td><b>Preço</b></td>
+            <td width="100" align="center"><b>Detalhar</b></td>
+            <td width="100" align="center"><b>Atualizar</b></td>
+            <td width="100" align="center"><b>Excluir</b></td>
+        </tr>
+        <!-- Aqui você pode incluir o código Java para preencher dinamicamente a lista de produtos -->
+    </table>
+</body>
+</html>
