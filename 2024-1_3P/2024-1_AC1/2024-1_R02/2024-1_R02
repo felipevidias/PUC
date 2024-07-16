@@ -1,0 +1,58 @@
+--------------------2024-1_R02------------817294_FELIPE_VILHENA_DIAS-------04/06/2024
+
+TABELA VERDADE COMPLETA: 
+_____________________    _________________   ________________________________   ________________________________
+| m | a_t | b_t | c |    | a_t+1 | b_t+1 |   | a_t | a_t+1 | Da | JaKa | Ta |   | b_t | b_t+1 | Db | JbKb | Tb |
+---------------------    -----------------   --------------------------------   --------------------------------
+| 0 |  0  |  0  | 0 |    |   0   |   0   |   |  0  |   0   |  0 |  00  | 0  |   |  0  |   0   |  0 |  00  | 0  |
+| 1 |  0  |  0  | 1 |	 |   0   |   1   |   |  0  |   0   |  0 |  00  | 0  |   |  0  |   1   |  1 |  10  | 1  |
+| 2 |  0  |  1  | 0 |    |   0   |   1   |   |  0  |   0   |  0 |  00  | 0  |   |  1  |   1   |  1 |  01  | 0  |
+| 3 |  0  |  1  | 1 |	 |   1   |   1   |   |  0  |   1   |  1 |  10  | 1  |   |  1  |   1   |  1 |  01  | 0  |
+| 4 |  1  |  0  | 0 |    |   1   |   0   |   |  1  |   1   |  1 |  01  | 0  |   |  0  |   0   |  0 |  00  | 0  |
+| 5 |  1  |  0  | 1 |	 |   0   |   0   |   |  1  |   0   |  0 |  01  | 1  |   |  0  |   0   |  0 |  00  | 0  |
+| 6 |  1  |  1  | 0 |	 |   1   |   1   |   |  1  |   1   |  1 |  01  | 0  |   |  1  |   1   |  1 |  01  | 0  |
+| 7 |  1  |  1  | 1 |	 |   1   |   0   |   |  1  |   1   |  1 |  01  | 0  |   |  1  |   0   |  0 |  01  | 1  |
+---------------------	 -----------------   --------------------------------   --------------------------------
+
+1) Montar as expressões por mintermos dos flip-flops
+
+a.) SoP (Da) = (a'.b.c) + (a.b'.c') + (a.b.'c) + (a.b.c)
+    SoP (Db) = (a'.b'.c) + (a'.b.c') + (a'.b.c) + (a.b.c')
+
+b.) SoP (Ja) = (a'.b.c) 
+    SoP (Jb) = (a'.b.c')
+    SoP (Ka) = (a.b'.c') + (a.b'.c) + (a.b.c') + (a.b.c)
+    SoP (Kb) = (a'.b.c') + (a'.b.c) + (a.b.c') + (a.b.c)
+    
+c.) SoP (Ta) = (a'.b.c) + (a.b'.c)
+    SoP (Tb) = (a'.b'.c) + (a.b.c)
+  
+    
+2) Montar as expressões compactas por MAXTERMOS dos flip-flops
+
+a.)PoS (Da) = (A’ + B’ + C’)(A’ + B’ + C)(A’ + B + C’)(A’ + B + C)
+   PoS (Db) = (A’ + B’ + C’)(A’ + B’ + D)(A’ + B + C’)(A’ + B + D)
+   
+b.) PoS (Ja) = (A’ + B’ + C’)(A’ + B’ + C)(A’ + B’ + D)(A’ + B + C’)(A’ + B + C)(A’ + B + D)(A + B’ + C’)
+    PoS (Jb) = (A’ + B’ + C’)(A’ + B’ + D)(A’ + B + C’)(A’ + B + C)(A’ + B + D)(A + B’ + C’)(A + B’ + C)
+    PoS (Ka) = (A’ + B’ + C’)(A’ + B’ + C)(A’ + B + C’)(A’ + B + C)
+    PoS (Kb) = (A’ + B’ + C’)(A’ + B’ + D)(A’ + B + C’)(A’ + B + D)
+    
+c.)PoS (Ta) = (A’ + B’ + C’)(A’ + B’ + C)(A’ + B’ + D)(A’ + B + C’)(A’ + B + D)(A + B’ + C’)
+   PoS (Tb) = (A’ + B’ + C’)(A’ + B’ + D)(A’ + B + C’)(A’ + B + C)(A’ + B + D)(A + B’ + C’)
+
+
+3)  Montar os mapas de Veitch-Karnaugh correspondentes e simplificar suas expressões SoP:
+
+	- SoP (Da) = a.b′+a.b
+	- SoP (Db) = b.c′+a′.c
+	- SoP (Ja) = a′.b.c
+	- SoP (Jb) = a′.b.c
+	- SoP (Ka) = a
+	- SoP (Kb) = b.c+b.c
+	- SoP (Ta) = b.c
+	- SoP (Tb) = a.b.c+a′.b.c
+	
+
+
+

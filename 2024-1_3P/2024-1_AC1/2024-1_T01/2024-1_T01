@@ -1,0 +1,67 @@
+2024-1_T01-------------28/03/24-----------817294_Felipe_Vilhena_Dias------------
+
+QUESTÕES:
+
+2) - EESC - USP. Profª. Luiza Maria Romeiro Codá. (2014). Dispositivos Lógicos Programáveis.
+
+   - Freitas, T. T., Pasqualinoto, T. L., & Leão, J. C. (2005). O CPLD (Dispositivo Complexo de Lógica Programável aplicado em automação industrial).
+
+3) 
+
+a) ASIC: Os   ASICs   ou   CIs   customizados,   se   caracterizam   principalmente   pela necessidade   de   um   processo   de   	 fabricação   especial, que   requer   máscaras específicas para cada projeto. Essa característica acarreta em altos custos de projeto e um longo tempo de desenvolvimento para esse tipo de implementação, em caso de grandes implementações esse alto custo é amortizado.
+
+b) ASSP: Application Specific Standard Product, ou Produto Padrão Específico para Aplicações é um dispositivo semicondutor projetado para uma aplicação específica e vendidos como parte de um dispositivo ou componente específico.
+
+c) SPLD: Simple Programmable Logic Devices, ou Dispositivo Lógico Programável Simples são dispositivos simples e de baixa capacidade,
+que contém menos de 600 portas lógicas, fabricados com tecnologia CMOS (Complementary metal–oxide–semiconductor). E seu circuito
+se basea em um conjunto de portas AND-OR.
+
+d) CPLD: Complex Programmable Logic Device, ou Dispositivo Lógico Programável é um dispositivo lógico programável com complexidade
+entre de uma PAL(Programmable Array Logic, ou Matriz Lógica Programável) e de uma FPGA. Os CPLDs podem se resumir em dispositivos
+que utilizam vários SPLD. 
+ 
+e) SOC: System-on-Chip, ou Sistema em um Chip é um tipo de circuito integrado que integra todos ou a maioria dos componentes necessários para um sistema computacional ou eletrônico em um único chip. Um sistema em um chip não requer o uso de componentes externos na maioria dos casos, o que simplifica a implementação e o uso.
+
+f) FPGA: Field Programmable Gate Array, ou Arranjo de Porta Programável em Campo é um dispositivo lógico programável que possui arquitetura 
+baseado em blocos lógicos configuráveis, chamados CLB (Configuration Logic Blocks). Os CLBs são formados por portas lógicas e 
+flip-flops que implementam funções lógicas. O FPGA inclui também estruturas chamadas de blocos de entrada e saída(IOB - In/Out
+Blocks), responsáveis pelo interfaceamento entre as saídas provenientes das combinações CLBs.
+Cada bloco lógico contém capacidade computacional para implementar funções lógicas e realizar roteamento para comunicação.
+A implementação de funções em cada bloco lógico FPGA é feita utilizando bloco de memória LUT (Look - Up Table).
+
+
+
+4) Uma PROM (Programmable Read Only Memory) ou EPROM (Eraseable Programmable Read Only Memory) é uma ROM programável. Seu conteúdo pode ser programado e apagado pelo usuário, através de dispositivos especiais para essa finalidade. O PLA (Programmable Logic Array) foi o primeiro dispositivo desenvolvido para implementar funções lógicas definidas. Um PLA é constituído por arranjos AND e OR, onde ambos são programáveis. PAL (Programmable Array Logic:)) este dispositivo consiste em um arranjo AND programável, assim como um arranjo OR fixa.
+   Os três tipos PROM, PLA e PAL são dispositivos de lógica programavéis, mas há diferenças em suas arquiteturas e funcionalidades. Na PLA, os termos AND e OR são programáveis, na PROM é um despositivo de memória apenas de leitura que pode ser programado uma vez pelo usuário. E na PAL, apenas a matriz de OR é programável. Na PLA possui uma matriz de AND e uma matriz de OR, onde as interconexões entre elas podem ser programadas para criar funções lógicas específicas, na PROM ela não é reprogramável após a programação inicial, e na PAL a matriz de AND é fixa, mas a matriz de OR é programável, o que simplifica a programação em comparação com a PLA. Na PLA permite uma flexibilidade moderada na implementação de funções lógicas e o número de entradas e saídas é fixo, já na PROM é usada principalmente para implementar funções lógicas fixas ou armazenar dados que não precisam ser alterados com frequência e não possui a capacidade de reconfiguração como a PLA ou PAL; uma vez programada, sua funcionalidade é fixa, e por fim na PAL é geralmente, oferece uma menor flexibilidade do que a PLA, mas é mais fácil de programar e requer menos recursos e assim como na PLA, o número de entradas e saídas é fixo.
+   
+   
+5) CPLD (Dispositivo Lógico Programável Complexo) e FPGA (Matriz de Portas Programáveis em Campo) são dois tipos de dispositivos de lógica programável usados em aplicações eletrônicas. Embora tenham algumas semelhanças, também possuem diferenças significativas em termos de arquitetura, capacidade de integração e flexibilidade de design. Aqui está uma descrição das principais diferenças entre CPLDs e FPGAs:
+
+1 - Arquitetura Interna:
+
+-CPLD: Os CPLDs são compostos principalmente por uma matriz de PLDs (Dispositivos Lógicos Programáveis) interconectados. Esses PLDs são configurados com uma quantidade fixa de elementos lógicos programáveis (por exemplo, AND, OR, XOR).
+-FPGA: Por outro lado, os FPGAs contêm uma matriz de blocos lógicos configuráveis (CLBs) interconectados através de uma rede de roteamento programável. Cada CLB pode implementar funções lógicas mais complexas e é composto por uma coleção de elementos lógicos menores.
+
+2 - Capacidade de Integração:
+
+-CPLD: Os CPLDs geralmente têm uma menor quantidade de recursos lógicos em comparação com os FPGAs. Eles são mais adequados para aplicações de lógica menos complexas e em menor escala.
+-FPGA: Os FPGAs são conhecidos por sua capacidade de integração muito maior. Eles têm uma grande quantidade de recursos lógicos e podem -implementar designs muito maiores e mais complexos.
+
+3 - Flexibilidade de Design:
+
+-CPLD: Devido à sua arquitetura, os CPLDs são mais adequados para aplicações que requerem tempos de propagação mais curtos e menos níveis de interconexão.
+-FPGA: Os FPGAs oferecem uma flexibilidade de design muito maior devido à sua arquitetura, o que os torna ideais para projetos que exigem modificações frequentes ou prototipagem rápida.
+
+
+6) - Costa, C. (Data não fornecida). Implementação de Controlador Lógico Baseado em Lógica Programável Estruturada (FPGA). UNITAU – Universidade de Taubaté, Departamento de Engenharia Mecânica, Pós-Graduação em Automação Industrial.
+   https://professorcesarcosta.com.br/upload/imagens_upload/Artigo_Implementa%C3%A7%C3%A3o%20de%20Controlador%20L%C3%B3gico%20Program%C3%A1vel%20em%20FPGA.pdf
+   Ultimo acesso: 01/04/2024
+   
+   - Oliveira, C. R. L. (2007). Desenvolvimento de Glue Logic para Plataforma de Telecomunicação. Universidade Federal do Ceará, Fortaleza.
+   http://www.cgeti.ufc.br/monografias/CARLOS_RONALDO_LUCAS_DE_OLIVEIRA.pdf
+   Ultimo acesso : 01/04/2024
+   
+   - Silva, K. R. (2013). Introdução a Dispositivos Lógicos Programáveis. Curso Superior em Sistemas de Telecomunicações, IFSC - Instituto Federal de Santa Catarina, São José, SC.
+   https://wiki.sj.ifsc.edu.br/images/4/4c/Artigo_DLP_Kamila2013.pdf
+   Ultimo acesso: 01/04/2024
+   

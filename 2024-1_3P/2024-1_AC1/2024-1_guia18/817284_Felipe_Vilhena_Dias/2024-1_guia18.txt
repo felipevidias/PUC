@@ -1,0 +1,346 @@
+
+3 a)
+main: 
+    load zero ; acc <- 0
+    NOT      ; acc <- not acc setta pra 1 se 0
+    write    ; output <- acc
+
+    load one ; acc <- 1
+    NAND one ; acc <- not (acc & mdr) setta 1 se os dois forem 1
+    write    ; output <- acc
+
+    stop     ; stop
+
+zero: .data 2 0 ; 2-byte location for constant zero
+one: .data 2 1 ; 2-byte location for constant one
+res: .data 2 0 ; 2-byte location where result is stored
+4
+a)
+main:
+    load zero      ; 
+    NOT            ; 
+    write          ; 
+
+    load one       ; 
+    NOT            ; 
+    write          ; 
+
+    stop           ; 
+
+zero: .data 2 0    ; 
+one: .data 2 1     ; 
+ 
+b) ]
+main:
+    load zero
+    NAND zero
+    write
+
+    load zero
+    NAND one
+    write
+
+    load one
+    NAND zero
+    write
+
+    load one
+    NAND one
+    write
+
+    stop
+
+zero: .data
+
+c)
+main:
+    load zero
+    store a
+
+    load zero
+    store b
+
+    xor_test
+    write
+
+    load zero
+    store a
+
+    load one
+    store b
+
+    xor_test
+    write
+
+    load one
+    store a
+
+    load zero
+    store b
+
+    xor_test
+    write
+
+    load one
+    store a
+
+    load one
+    store b
+
+    xor_test
+    write
+
+    stop
+
+xor_test:
+    load a
+    store temp1
+    load a
+    NAND b
+    store temp2
+    load temp1
+    NAND temp2
+    store temp3
+    load b
+    NAND temp2
+    store temp4
+    load temp3
+    NAND temp4
+    store result
+    load result
+    return
+
+a: .data 2 0
+b: .data 2 0
+temp1: .data 2 0
+temp2: .data 2 0
+temp3: .data 2 0
+temp4: .data 2 0
+result: .data 2 0
+ 
+d) 
+main:
+    load zero
+    store f0
+
+    load one
+    store f1
+
+    write
+    write
+
+    load f1
+    store t2
+
+    add f0
+    store f2
+
+    write
+
+    load f2
+    add t2
+    store t3
+    write
+
+    load t3
+    add f2
+    store t4
+    write
+
+    load t4
+    add t3
+    store t5
+    write
+
+    stop
+
+zero: .data 2 0
+one: .data 2 1
+f0: .data 2 0
+f1: .data 2 1
+f2: .data 2 0
+t2: .data 2 0
+t3: .data 2 0
+t4: .data 2 0
+t5: .data 2 0
+
+e)
+main:
+    load n
+    store temp
+
+    load zero
+    store sum
+
+    load one
+    store odd
+
+calc_square:
+    load temp
+    jz end_calc
+
+    load sum
+    add odd
+    store sum
+
+    load odd
+    add two
+    store odd
+
+    load temp
+    sub one
+    store temp
+
+    jmp calc_square
+
+end_calc:
+    load sum
+    write
+
+    stop
+
+n: .data 2 5
+zero: .data 2 0
+one: .data 2 1
+two: .data 2 2
+sum: .data 2 0
+odd: .data 2 1
+temp: .data 2 0
+5
+main:
+    load n
+    store size
+
+outer_loop:
+    load zero
+    store i
+
+    load zero
+    store swapped
+
+inner_loop:
+    load i
+    sub one
+    jz end_outer_loop
+
+    load i
+    sub size
+    jz end_outer_loop
+
+    load array
+    add i
+    store temp1
+    load temp1
+    mdr <- mem
+    store x
+
+    load i
+    add one
+    store temp2
+    load array
+    add temp2
+    store temp3
+    load temp3
+    mdr <- mem
+    store y
+
+    load x
+    sub y
+    jp swap
+
+    load i
+    add one
+    store i
+    jmp inner_loop
+
+swap:
+    load temp1
+    load y
+    store temp1
+
+    load temp3
+    load x
+    store temp3
+
+    load one
+    store swapped
+
+    load i
+    add one
+    store i
+    jmp inner_loop
+
+end_outer_loop:
+    load swapped
+    jz done
+
+    load size
+    sub one
+    store size
+    jmp outer_loop
+
+done:
+    stop
+
+array: .data 2 5, 4, 3, 2, 1
+size: .data 2 0
+zero: .data 2 0
+one: .data 2 1
+i: .data 2 0
+temp1: .data 2 0
+temp2: .data 2 0
+temp3: .data 2 0
+x: .data 2 0
+y: .data 2 0
+swapped: .data 2 0
+n: .data 2 5
+
+6
+main:
+    load zero
+    store index
+
+    load target
+    store t
+
+search_loop:
+    load index
+    sub n
+    jz not_found
+
+    load array
+    add index
+    mdr <- mem
+    store temp
+
+    load temp
+    sub t
+    jz found
+
+    load index
+    add one
+    store index
+    jmp search_loop
+
+found:
+    load one
+    store result
+    jmp end
+
+not_found:
+    load zero
+    store result
+
+end:
+    stop
+
+array: .data 2 5, 4, 3, 2, 1
+n: .data 2 5
+index: .data 2 0
+temp: .data 2 0
+target: .data 2 3
+result: .data 2 0
+zero: .data 2 0
+one: .data 2 1
+t: .data 2 0
+

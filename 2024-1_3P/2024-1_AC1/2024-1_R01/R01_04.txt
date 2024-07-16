@@ -1,0 +1,16 @@
+2024-1_R01  817294_Felipe_Vilhena_Dias
+
+a.) Encontrar o positivo na base 2:
+
+Converta o valor negativo em binário:
+CAFE(16) = 1100 1010 1111 1110 em binário.
+Inverta todos os bits:
+0011 0101 0000 0001.
+Adicione 1 ao resultado da inversão dos bits:
+0011 0101 0000 0010.
+
+b.) Representar o valor inteiro do binário equivalente a 1/8 (shift_right 3):
+1/8 em binário é 0.001 em binário.
+Deslocando 3 vezes para a direita, obtemos 0.000001, que, em dois bytes, é representado como:
+0000 0000 0000 0001.
+
