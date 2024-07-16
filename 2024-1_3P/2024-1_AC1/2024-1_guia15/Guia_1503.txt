@@ -1,0 +1,21 @@
+ORG 0000H        ; Define o início do programa
+
+; Carrega dado01 em A
+LXI H, 5000H     ; Carrega a posição de memória inicial 5000H em HL
+MOV A, M         ; Carrega o valor de 5000H em A (A = dado01)
+
+; Adiciona dado02
+INX H            ; Incrementa HL para apontar para 5001H
+ADD M            ; Soma o valor de 5001H (dado02) ao acumulador
+DAA              ; Ajusta o acumulador para BCD
+
+; Adiciona dado03
+INX H            ; Incrementa HL para apontar para 5002H
+ADD M            ; Soma o valor de 5002H (dado03) ao acumulador
+DAA              ; Ajusta o acumulador para BCD
+
+; Armazena o resultado em memória
+INX H            ; Incrementa HL para apontar para 5003H
+MOV M, A         ; Armazena o resultado em 5003H
+
+HLT              ; Para a execução do programa

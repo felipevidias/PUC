@@ -1,0 +1,59 @@
+ORG 0000H        ; Define o início do programa
+
+; Carrega dado01 em DE (D = MSB, E = LSB)
+LXI H, 5000H     ; Carrega a posição de memória inicial 5000H em HL
+MOV E, M         ; Carrega LSB de dado01 em E
+INX H            ; Incrementa HL para apontar para 5001H
+MOV D, M         ; Carrega MSB de dado01 em D
+
+; Carrega dado02 em BC (B = MSB, C = LSB)
+INX H            ; Incrementa HL para apontar para 5002H
+MOV C, M         ; Carrega LSB de dado02 em C
+INX H            ; Incrementa HL para apontar para 5003H
+MOV B, M         ; Carrega MSB de dado02 em B
+
+; Adiciona dado02 a dado01 (DE = DE + BC)
+MOV A, E         ; Carrega LSB de dado01 em A
+ADD C            ; Soma LSB de dado02 ao acumulador
+MOV E, A         ; Armazena o resultado LSB em E
+
+MOV A, D         ; Carrega MSB de dado01 em A
+ADC B            ; Soma MSB de dado02 ao acumulador com carry
+MOV D, A         ; Armazena o resultado MSB em D
+
+; Carrega dado03 em HL (H = MSB, L = LSB)
+INX H            ; Incrementa HL para apontar para 5004H
+MOV L, M         ; Carrega LSB de dado03 em L
+INX H            ; Incrementa HL para apontar para 5005H
+MOV H, M         ; Carrega MSB de dado03 em H
+
+; Calcula o complemento de 2 de dado03 (HL = -dado03)
+CPI 00H          ; Compara A com 00H (A é sempre 00 aqui)
+MOV A, L         ; Carrega LSB de dado03 em A
+CPI 00H          ; Compara A com 00H (para ajuste de complemento)
+CMA              ; Complementa A (1's complemento)
+ADI 01H          ; Adiciona 1 para obter o complemento de 2
+MOV L, A         ; Armazena o complemento de 2 de LSB em L
+
+MOV A, H         ; Carrega MSB de dado03 em A
+CPI 00H          ; Compara A com 00H (para ajuste de complemento)
+CMA              ; Complementa A (1's complemento)
+ADC 00H          ; Adiciona carry para obter o complemento de 2
+MOV H, A         ; Armazena o complemento de 2 de MSB em H
+
+; Adiciona -dado03 a (dado01 + dado02)
+MOV A, E         ; Carrega LSB de (dado01 + dado02) em A
+ADD L            ; Soma LSB de -dado03 ao acumulador
+MOV E, A         ; Armazena o resultado LSB em E
+
+MOV A, D         ; Carrega MSB de (dado01 + dado02) em A
+ADC H            ; Soma MSB de -dado03 ao acumulador com carry
+MOV D, A         ; Armazena o resultado MSB em D
+
+; Armazena o resultado dado04 na memória
+LXI H, 5006H     ; Carrega a posição de memória 5006H em HL
+MOV M, E         ; Armazena LSB do resultado em 5006H
+INX H            ; Incrementa HL para apontar para 5007H
+MOV M, D         ; Armazena MSB do resultado em 5007H
+
+HLT              ; Para a execução do programa

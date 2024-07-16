@@ -1,0 +1,26 @@
+ORG 0000H        ; Define o início do programa
+
+; Carrega dado01 em A e multiplica por 2 (deslocamento à esquerda)
+LXI H, 5000H     ; Carrega a posição de memória inicial 5000H em HL
+MOV A, M         ; Carrega o valor de 5000H em A (A = dado01)
+MOV B, A         ; Copia dado01 para B para preservar o valor original
+ADD A            ; A = A + A (multiplica dado01 por 2)
+MOV C, A         ; Armazena 2 * dado01 em C
+
+; Carrega dado02 em A e multiplica por 3 (2 * dado02 + dado02)
+INX H            ; Incrementa HL para apontar para 5001H
+MOV A, M         ; Carrega o valor de 5001H em A (A = dado02)
+MOV D, A         ; Copia dado02 para D
+ADD A            ; A = A + A (multiplica dado02 por 2)
+ADD D            ; A = A + D (soma dado02, então A = 3 * dado02)
+
+; Subtrai 3 * dado02 de 2 * dado01
+MOV B, A         ; Copia 3 * dado02 para B
+MOV A, C         ; Carrega 2 * dado01 em A
+SUB B            ; A = 2 * dado01 - 3 * dado02
+
+; Armazena o resultado em memória
+LXI H, 5002H     ; Carrega a posição de memória 5002H em HL
+MOV M, A         ; Armazena o resultado em 5002H
+
+HLT              ; Para a execução do programa

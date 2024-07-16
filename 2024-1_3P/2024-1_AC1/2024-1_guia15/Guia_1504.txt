@@ -1,0 +1,28 @@
+ORG 0000H        ; Define o início do programa
+
+; Carrega dado01 em A
+LXI H, 5000H     ; Carrega a posição de memória inicial 5000H em HL
+MOV A, M         ; Carrega o valor de 5000H em A (A = dado01)
+
+; Subtrai 2 * dado02
+INX H            ; Incrementa HL para apontar para 5001H
+MOV B, M         ; Carrega o valor de 5001H em B (B = dado02)
+MOV C, B         ; Duplica o valor de B em C (C = dado02)
+ADD B            ; Soma o valor de B (dado02) ao acumulador A (A = dado01 + dado02)
+ADD B            ; Soma novamente o valor de B ao acumulador A (A = dado01 + 2 * dado02)
+MOV D, A         ; Armazena o resultado temporariamente em D (D = dado01 + 2 * dado02)
+
+; Subtrai 2 * dado02 de dado01
+MOV A, M         ; Recarrega dado01 em A
+SUB D            ; Subtrai D (dado01 + 2 * dado02) do acumulador (A = dado01 - 2 * dado02)
+
+; Multiplica o resultado por 4 (dobro do dobro)
+MOV B, A         ; Armazena o resultado temporariamente em B
+ADD A            ; Dobra o acumulador A (A = 2 * (dado01 - 2 * dado02))
+ADD A            ; Dobra novamente o acumulador A (A = 4 * (dado01 - 2 * dado02))
+
+; Armazena o resultado em memória
+LXI H, 5002H     ; Carrega a posição de memória 5002H em HL
+MOV M, A         ; Armazena o resultado em 5002H
+
+HLT              ; Para a execução do programa

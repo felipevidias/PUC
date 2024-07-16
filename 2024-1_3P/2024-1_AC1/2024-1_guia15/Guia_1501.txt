@@ -1,0 +1,21 @@
+ORG 0000H        ; Define o início do programa
+
+; Carrega os valores de memória para registradores
+LXI H, 5000H     ; Carrega a posição de memória inicial 5000H em HL
+MOV A, M         ; Carrega o valor de 5000H em A (A = A)
+INX H            ; Incrementa HL para apontar para 5001H
+MOV B, M         ; Carrega o valor de 5001H em B (B = B)
+INX H            ; Incrementa HL para apontar para 5002H
+MOV C, M         ; Carrega o valor de 5002H em C (C = C)
+
+; Executa A + B
+ADD B            ; Soma o valor de B ao acumulador (A = A + B)
+
+; Executa (A + B) - C
+SUB C            ; Subtrai o valor de C do acumulador (A = A + B - C)
+
+; Armazena o resultado em memória
+INX H            ; Incrementa HL para apontar para 5003H
+MOV M, A         ; Armazena o resultado em 5003H
+
+HLT              ; Para a execução do programa

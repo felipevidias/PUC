@@ -1,0 +1,27 @@
+ORG 0000H        ; Define o início do programa
+
+; Carrega dado01 em A
+LXI H, 5000H     ; Carrega a posição de memória inicial 5000H em HL
+MOV A, M         ; Carrega o valor de 5000H em A (A = dado01)
+
+; Multiplica dado01 por 4 (desloca A duas vezes para a esquerda)
+MOV B, A         ; Armazena dado01 em B para preservar o valor original
+RLC              ; Rota à esquerda com carry (multiplica por 2)
+RLC              ; Rota à esquerda com carry novamente (multiplica por 4)
+MOV C, A         ; Armazena o resultado de dado01 * 4 em C
+
+; Carrega dado02 em A
+INX H            ; Incrementa HL para apontar para 5001H
+MOV A, M         ; Carrega o valor de 5001H em A (A = dado02)
+
+; Divide dado02 por 2 (desloca A uma vez para a direita)
+RAR              ; Rota à direita com carry (divide por 2)
+
+; Soma o resultado da divisão ao resultado da multiplicação
+ADD C            ; Soma o valor de C (dado01 * 4) ao acumulador A
+
+; Armazena o resultado em memória
+INX H            ; Incrementa HL para apontar para 5002H
+MOV M, A         ; Armazena o resultado em 5002H
+
+HLT              ; Para a execução do programa
