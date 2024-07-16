@@ -1,0 +1,56 @@
+; Programa para converter um valor em BCD para hexadecimal
+; dado02 = HI(dado01) * 10 + LOW(dado01)
+
+ORG 0000H
+
+; Definição de endereços de memória para os dados
+DADO01: DB 24H  ; Número em BCD (exemplo: 24 BCD)
+DADO02: DB 00H  ; Resultado em hexadecimal
+
+; Início do programa
+START:
+    LXI H, DADO01  ; Carrega o endereço de DADO01 no registrador HL
+    MOV A, M       ; Move o conteúdo de DADO01 para o registrador A
+
+    ; Separar o dígito alto (HI) e o dígito baixo (LOW)
+    MOV B, A       ; Move o conteúdo de A para B
+    ANI 0FH        ; Mascarar os 4 bits mais altos para obter o dígito baixo
+    MOV C, A       ; Move o dígito baixo (LOW) para C
+
+    MOV A, B       ; Move o conteúdo de B para A novamente
+    ANI F0H        ; Mascarar os 4 bits mais baixos para obter o dígito alto
+    RRC            ; Rotaciona A 4 bits à direita
+    RRC
+    RRC
+    RRC
+    MOV B, A       ; Move o dígito alto (HI) para B
+
+    ; Multiplicar o dígito alto por 10
+    MVI D, 0AH     ; Carrega 10 no registrador D
+    MOV A, B       ; Move o dígito alto (HI) para o acumulador
+    CALL MULTIPLY  ; Chama a sub-rotina de multiplicação
+
+    ; Adicionar o dígito baixo ao resultado da multiplicação
+    MOV B, A       ; Move o resultado da multiplicação para B
+    MOV A, C       ; Move o dígito baixo (LOW) para o acumulador
+    ADD B          ; Adiciona o valor de B ao acumulador
+
+    ; Armazenar o resultado em DADO02
+    LXI H, DADO02  ; Carrega o endereço de DADO02 no registrador HL
+    MOV M, A       ; Move o conteúdo de A para a memória (resultado)
+
+    HLT            ; Para a execução do programa
+
+; Sub-rotina para multiplicar A por D
+MULTIPLY:
+    MVI E, 00H     ; Inicializa E com 0 (resultado)
+    MOV C, A       ; Move o valor de A para C (multiplicador)
+    MOV A, 00H     ; Inicializa A com 0 (acumulador)
+MULT_LOOP:
+    ADD E          ; Adiciona E ao acumulador
+    DCR C          ; Decrementa o multiplicador
+    JNZ MULT_LOOP  ; Se C != 0, continua a multiplicação
+    MOV A, E       ; Move o resultado da multiplicação para A
+    RET            ; Retorna da sub-rotina
+
+END

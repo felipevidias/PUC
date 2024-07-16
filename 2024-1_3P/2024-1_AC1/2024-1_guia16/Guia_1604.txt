@@ -1,0 +1,38 @@
+; Programa para encontrar o maior valor de um arranjo de 8 bits
+; DICA: Usar o exemplo do BubbleSort
+
+ORG 0000H
+
+; Definição do arranjo e variáveis
+ARRAY:  DB 05H, 3AH, 1EH, 09H, 21H  ; Exemplo de arranjo com 5 elementos
+ARRAY_SIZE: DB 05H                 ; Tamanho do arranjo
+MAIOR:  DB 00H                     ; Variável para armazenar o maior valor
+
+; Início do programa
+START:
+    LXI H, ARRAY       ; Carrega o endereço do arranjo no registrador HL
+    MOV B, M           ; Carrega o primeiro valor do arranjo no registrador B
+    INX H              ; Incrementa HL para apontar para o próximo valor
+    MOV C, M           ; Carrega o segundo valor do arranjo no registrador C
+
+    MVI D, 00H         ; Inicializa o contador D com 0
+    MOV A, ARRAY_SIZE  ; Carrega o tamanho do arranjo no acumulador A
+    MOV E, A           ; Move o tamanho do arranjo para o registrador E
+
+COMPARA:
+    CMP C              ; Compara B com C
+    JC CONTINUA        ; Se B < C, continua
+    MOV B, C           ; Caso contrário, B = C
+
+CONTINUA:
+    INX H              ; Incrementa HL para apontar para o próximo valor
+    MOV C, M           ; Carrega o próximo valor do arranjo no registrador C
+    DCR E              ; Decrementa o contador E
+    JNZ COMPARA        ; Se E != 0, continua comparando
+
+    MOV A, B           ; O maior valor está no registrador B
+    STA MAIOR          ; Armazena o maior valor em MAIOR
+
+    HLT                ; Para a execução do programa
+
+END

@@ -1,0 +1,39 @@
+; Programa para calcular o produto de dois números de 8 bits usando somas sucessivas
+; dado01 * dado02 = produto
+
+ORG 0000H
+
+; Definição de endereços de memória para os dados
+DADO01: DB 05H  ; Primeiro número (exemplo)
+DADO02: DB 03H  ; Segundo número (exemplo)
+PRODUTO: DB 00H ; Resultado do produto
+
+; Início do programa
+START:
+    LXI H, DADO01  ; Carrega o endereço de DADO01 no registrador HL
+    MOV A, M       ; Move o conteúdo de DADO01 para o registrador A
+    MOV B, A       ; Move o conteúdo de A para o registrador B (B = dado01)
+
+    LXI H, DADO02  ; Carrega o endereço de DADO02 no registrador HL
+    MOV A, M       ; Move o conteúdo de DADO02 para o registrador A (A = dado02)
+
+    MVI C, 00H     ; Inicializa o registrador C com 0 (C = 0)
+
+MULTIPLICACAO:
+    MOV D, B       ; Move o valor de B para o registrador D (D = B)
+    MOV E, C       ; Move o valor de C para o registrador E (E = C)
+
+    DAD H          ; Soma o conteúdo de HL ao registrador H (HL = HL + dado02)
+    MOV M, A       ; Move o conteúdo de A para a memória (produto)
+
+    MOV A, D       ; Move o valor de D para o registrador A (A = D)
+    CPI 01H        ; Compara A com 1
+    JZ FIM         ; Se A for igual a 1, pula para o fim
+    DCR A          ; Decrementa o valor de A (A = A - 1)
+    MOV B, A       ; Move o valor de A para o registrador B (B = A)
+    JMP MULTIPLICACAO ; Volta para a rotina de multiplicação
+
+FIM:
+    HLT            ; Para a execução do programa
+
+END

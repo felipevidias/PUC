@@ -1,0 +1,37 @@
+; Programa para calcular o quociente inteiro de dois números de 8 bits usando subtrações sucessivas
+; dado01 / dado02 = quociente
+
+ORG 0000H
+
+; Definição de endereços de memória para os dados
+DADO01: DB 0AH  ; Primeiro número (exemplo)
+DADO02: DB 02H  ; Segundo número (exemplo)
+QUOCIENTE: DB 00H ; Resultado do quociente
+
+; Início do programa
+START:
+    LXI H, DADO01  ; Carrega o endereço de DADO01 no registrador HL
+    MOV A, M       ; Move o conteúdo de DADO01 para o registrador A
+    MOV B, A       ; Move o conteúdo de A para o registrador B (B = dado01)
+
+    LXI H, DADO02  ; Carrega o endereço de DADO02 no registrador HL
+    MOV A, M       ; Move o conteúdo de DADO02 para o registrador A (A = dado02)
+    MOV C, A       ; Move o conteúdo de A para o registrador C (C = dado02)
+
+    MVI D, 00H     ; Inicializa o registrador D com 0 (D = 0) para contar o quociente
+
+DIVISAO:
+    CMP B          ; Compara A (dado02) com B (dado01)
+    JG FIM         ; Se A (dado02) > B (dado01), pula para FIM
+    SUB B          ; A = A - B (dado02 = dado02 - dado01)
+    INX D          ; Incrementa o registrador D (D = D + 1)
+    JMP DIVISAO    ; Volta para a rotina de divisão
+
+FIM:
+    MOV A, D       ; Move o conteúdo de D para o registrador A (A = quociente)
+    LXI H, QUOCIENTE ; Carrega o endereço de QUOCIENTE no registrador HL
+    MOV M, A       ; Move o conteúdo de A para a memória (quociente)
+
+    HLT            ; Para a execução do programa
+
+END

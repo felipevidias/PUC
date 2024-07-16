@@ -1,0 +1,45 @@
+; Programa para calcular o fatorial de um dado de 8 bits
+; dado02 = FAT(dado01)
+
+ORG 0000H
+
+; Definição de endereços de memória para os dados
+DADO01: DB 05H  ; Número de 8 bits (exemplo: 5)
+DADO02: DB 00H  ; Resultado do fatorial
+
+; Início do programa
+START:
+    LXI H, DADO01  ; Carrega o endereço de DADO01 no registrador HL
+    MOV A, M       ; Move o conteúdo de DADO01 para o registrador A
+    MOV B, A       ; Move o conteúdo de A para o registrador B (B = dado01)
+    
+    MVI C, 01H     ; Inicializa C com 1 (fatorial inicial)
+    MVI D, 01H     ; Inicializa D com 1 (contador)
+
+CALCULA_FATORIAL:
+    MOV A, C       ; Move o fatorial atual para o registrador A
+    CALL MULTIPLY  ; Chama a sub-rotina de multiplicação
+    MOV C, A       ; Move o resultado da multiplicação para C
+    
+    MOV A, D       ; Move o contador para o registrador A
+    INX D          ; Incrementa o contador
+    CMP B          ; Compara o contador com o dado de entrada
+    JNZ CALCULA_FATORIAL ; Se não igual, continua o loop
+    
+    MOV A, C       ; Move o resultado do fatorial para A
+    LXI H, DADO02  ; Carrega o endereço de DADO02 no registrador HL
+    MOV M, A       ; Move o conteúdo de A para a memória (resultado)
+
+    HLT            ; Para a execução do programa
+
+; Sub-rotina para multiplicar A por D
+MULTIPLY:
+    MOV E, A       ; Move o valor de A para E (multiplicando)
+    MOV A, 00H     ; Inicializa A com 0 (acumulador)
+MULTIPLY_LOOP:
+    ADD E          ; Adiciona E ao acumulador
+    DCR D          ; Decrementa o multiplicador
+    JNZ MULTIPLY_LOOP ; Se D != 0, continua a multiplicação
+    RET            ; Retorna da sub-rotina
+
+END

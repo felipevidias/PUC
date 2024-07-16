@@ -1,0 +1,39 @@
+; Programa para calcular o quadrado de um dado de 8 bits
+; dado02 = SQR(dado01)
+; DICA: Somar os ímpares: 5^2 = 1 + 3 + 5 + 7 + 9 = 25
+
+ORG 0000H
+
+; Definição de endereços de memória para os dados
+DADO01: DB 05H  ; Número de 8 bits (exemplo: 5)
+DADO02: DB 00H  ; Resultado do quadrado
+
+; Início do programa
+START:
+    LXI H, DADO01  ; Carrega o endereço de DADO01 no registrador HL
+    MOV A, M       ; Move o conteúdo de DADO01 para o registrador A
+    MOV B, A       ; Move o conteúdo de A para o registrador B (B = dado01)
+
+    MVI C, 01H     ; Inicializa C com 1 (primeiro número ímpar)
+    MVI D, 00H     ; Inicializa D com 0 (acumulador para o quadrado)
+
+CALCULA_QUADRADO:
+    ADD D          ; Adiciona o acumulador D ao registrador A
+    MOV D, A       ; Move o resultado da adição para o acumulador D
+
+    MOV A, C       ; Move o número ímpar atual para A
+    ADI 02H        ; Incrementa A em 2 (próximo número ímpar)
+    MOV C, A       ; Move o novo número ímpar para C
+
+    MOV A, B       ; Move o conteúdo de B (contador) para A
+    DCR A          ; Decrementa A (A = A - 1)
+    MOV B, A       ; Move o valor decrementado para B
+    JNZ CALCULA_QUADRADO ; Se B != 0, continua somando
+
+    MOV A, D       ; Move o resultado acumulado para A
+    LXI H, DADO02  ; Carrega o endereço de DADO02 no registrador HL
+    MOV M, A       ; Move o conteúdo de A para a memória (resultado)
+
+    HLT            ; Para a execução do programa
+
+END
