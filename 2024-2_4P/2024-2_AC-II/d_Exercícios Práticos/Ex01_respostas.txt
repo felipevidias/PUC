@@ -1,0 +1,26 @@
+ 
+1) Caso se o pino flutuante for exposto a ruídos ou correntes inesperadas, isso pode danificar o circuito ou o próprio componente.
+
+2) Quando se trata de somadores de 4 bits, o tempo de atraso está diretamente relacionado ao tempo que o sinal de carry leva para se propagar de um bit menos significativo para o mais significativo.
+
+3) O tempo total de propagação (TtotalTtotal​) será:
+Ttotal=4×10 ms=40 ms
+Portanto, o tempo necessário para a computação de uma soma e do "vai um" em um somador de 4 bits é 40 ms.
+
+4) Para um somador Ripple Carry de 32 bits, o tempo total de propagação é diretamente proporcional ao número de bits. Como cada estágio tem um tempo de propagação de 10 ms, o tempo total de propagação (TtotalTtotal​) para um somador de 32 bits será:
+Ttotal=32×10 ms=320 ms
+Ttotal​=32×10 ms=320 ms
+
+Portanto, o tempo necessário para a computação de uma soma e do "vai um" em um somador de 32 bits é 320 ms. 
+
+5) 1/40 x 10^-3 s = 25hz [ SOMADOR DE 4 BITS ]
+   1/320 x 10^-3 s = 3.125hz [ SOMADOR DE 32 BITS ] 
+
+
+6)  O somador de Carry Lookahead (CLA) é projetado para reduzir o tempo de propagação do "vai um" ao calcular o "vai um" de maneira paralela para todos os bits, em vez de esperar que o "vai um" propague de um bit para o próximo.
+
+    Vantagem: O tempo de propagação não cresce linearmente com o número de bits, mas sim de forma logarítmica.
+    Tempo de Propagação: Aproximadamente log⁡2(n)×Tproplog2​(n)×Tprop​, onde nn é o número de bits e TpropTprop​ é o tempo de propagação de um estágio.
+
+
+

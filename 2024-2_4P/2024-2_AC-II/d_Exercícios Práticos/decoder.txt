@@ -1,0 +1,34 @@
+# Truth table
+# Generated from circuit Decodificador_4_p_Hex_80e2e364
+# Exported on Tue Aug 20 15:57:01 BRT 2024
+
+# Hints and Notes on Formatting:
+# * You can edit this file then import it back into Logisim!
+# * Anything after a '#' is a comment and will be ignored.
+# * Blank lines and separator lines (e.g., ~~~~~~) are ignored.
+# * Keep column names simple (no spaces, punctuation, etc.)
+# * 'Name[N..0]' indicates an N+1 bit variable, whereas
+#   'Name' by itself indicates a 1-bit variable.
+# * You can use 'x' or '-' to indicate "don't care" for both
+#   input and output bits.
+# * You can use binary (e.g., '10100011xxxx') notation or
+#   or hex (e.g., 'C3x'). Logisim will figure out which is which.
+
+a b c d | x y z u v w s t
+~~~~~~~~~~~~~~~~~~~~~~~~~
+0 0 0 0 | 0 1 1 1 1 0 1 0
+0 0 0 1 | 0 0 0 0 0 0 1 0
+0 0 1 0 | 1 0 1 1 1 0 0 0
+0 0 1 1 | 0 0 1 0 0 1 1 0
+0 1 0 0 | 0 1 0 0 0 0 1 0
+0 1 0 1 | 0 1 1 0 0 0 1 0
+0 1 1 0 | 1 1 1 0 1 1 1 0
+0 1 1 1 | 0 1 1 1 0 0 1 0
+1 0 0 0 | 1 1 1 1 1 0 1 0
+1 0 0 1 | 1 1 1 0 0 0 1 0
+1 0 1 0 | 1 1 1 1 1 0 1 0
+1 0 1 1 | 1 1 0 0 1 1 1 0
+1 1 0 0 | 0 0 1 0 0 0 1 0
+1 1 0 1 | 0 0 0 0 1 0 1 0
+1 1 1 0 | 1 1 1 0 1 1 0 0
+1 1 1 1 | 0 0 1 1 0 0 1 0
