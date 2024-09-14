@@ -1,0 +1,29 @@
+% Nome do capítulo
+\chapter{Observações importantes}
+% Label para referenciar
+\label{cap3}
+
+% Diminuir espaçamento entre título e texto
+\vspace{-1.9cm}
+
+% Texto do capítulo
+
+  Este documento foi compilado em ambiente linux (Ubuntu 10.04) usando o programa Kile - an Integrated LaTeX Environment - Version 2.0.85.
+  Para correta formatação os seguintes arquivos do pacote \textit{abntex} devem ser alterados.
+
+    \begin{compactitem}
+      \item[a)] Arquivo abnt.cls
+
+      No Ubuntu o arquivo fica armazenado em \textit{/usr/share/texmf/tex/latex/abntex}.
+      Comentar a linha 967: Linha comentada para reduzir o espaçamento entre o topo da página e o título.
+      Alterar a linha 1143: Parâmetro alterado de 30pt para -30pt para reduzir o espaçamento entre o top da página e o título do apêndice.
+      Alterar a linha 985: Parâmetro alterado de 0pt para -30pt para reduzir o espaçamento entre o top da página e o título.
+      Alterar a linha 991: Parâmetro alterado de 45pt para 30pt para reduzir o espaçamento entre o texto e o título.
+
+      \item[b)] Arquivo acronym.sty
+
+      No Ubuntu o arquivo fica armazenado em \textit{/usr/share/texmf-texlive/tex/latex/acronym}.
+      Alterar a linha 225: Inserir o separador -- entre acrônimo/descrição e remover o negrito com o \textit{normalfont}.
+      %\item[\protect\AC@hypertarget{#1}{\acsfont{\normalfont{#2}}} --] #3 
+
+    \end{compactitem}

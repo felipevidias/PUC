@@ -1,0 +1,55 @@
+% Nome do capítulo
+\chapter{Primeiro capítulo de exemplo}
+% Label para referenciar
+\label{cap1}
+
+% Diminuir espaçamento entre título e texto
+\vspace{-1.9cm}
+
+% Texto do capítulo
+
+  A seguir serão apresentados alguns comandos do LaTex usados comumente para formatar textos de dissertação baseados
+  na normalização da PUC (2011).
+
+  Para as citações a norma estabelece duas formas de apresentação. A primeira delas é empregada quando a
+  citação aparece no final de um parágrafo. Neste caso, o comando cite é usado para formatar a citação em caixa alta,
+  como é mostrado no exemplo a seguir. \cite{Duato:2002}.
+
+  Outra forma de apresentação da citação é a que ocorre no decorrer do texto, essa situação é exemplificada na próxima frase.
+  Conforme \citeonline{Bjerregaard:2006}, o estudo mencionado revela progressos no desempenho dos processadores. 
+  Para a formatação da citação em caixa baixa deve ser usado o comando citeonline.
+
+  Nas citações que aparecem mais de uma referência as mesmas devem ser separadas por vírgulas, como
+  neste exemplo. \cite{Keyes:2008, Zhao:2008, Ganguly:2011}. Se houver necessidade de especificar a página ou que foi
+  realizada uma tradução do texto deve ser feito da seguinte maneira. \cite[p.~2, tradução nossa]{Sasaki:2009}.
+  A citação direta deve ser feita de forma semelhante. ``[...] A carga de trabalho de um sistema pode 
+  ser definida como o conjunto de todas as informações de entrada.''~\cite[p. 160]{Menasce:2002}.
+
+  O arquivo dissertacao.bib mostra exemplos de representação para vários tipos de referências (artigos de conferências, 
+  periódicos, relatórios, livros, dentre outros). Cada um desses tipos requer uma forma diferente de representação para 
+  que a referência seja formatada conforme as exigências da normalização.
+
+\section{Primeira seção}
+\label{secao1}
+
+  Para gerar a lista de siglas automaticamente deve ser usado o pacote \textit{acronym}. Para tanto, toda vez que uma sigla for mencionada no texto
+  deve ser usado o comando ac\{sigla\}. Dessa forma, se for a primeira ocorrência da sigla a mesma será escrita por extenso
+  conforme descrição feita no arquivo lista-siglas.tex. Caso contrário, somente a sigla será mostrada. Ex
+
+\subsection{Primeira subseção}
+  
+  As enumerações devem ser geradas usando o pacote \textit{compactitem}. Cada item deve terminar com um ponto final.
+  Abaixo um exemplo de enumeração é apresentado:
+
+    \begin{compactitem}
+      \item[a)] Coletar e analisar.
+      \item[b)] Configurar e simular.
+      \item[c)] Definir a metodologia.
+      \item[d)] Avaliar o desempenho.
+      \item[e)] Analisar e avaliar características.
+    \end{compactitem}
+
+\section{Segunda seção}
+
+  Para referenciar um capítulo, seção ou subseção basta definir um label para o mesmo e usar o comando ref para referênciá-lo
+  no texto. Exemplo: Como pode ser visto no Capítulo \ref{cap1} ou na Seção \ref{secao1}.
