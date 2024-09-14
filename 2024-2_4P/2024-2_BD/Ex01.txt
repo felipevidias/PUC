@@ -1,0 +1,53 @@
+1.) * Chaves primarias:
+	- Categoria : CodCategoria;
+	- Cliente: CodCli;
+	- Funcionario: CodFunc;
+	- Fornecedor: CodFornec;
+	- Produto: CodProd;
+	
+   * Chaves estrangeiras:
+   	- Categoria: - ;
+   	- Cliente: CodCategoria;
+   	- Funcionario: - ;
+   	- Fornecedor: - ;
+   	- Produto: CodFornec;
+  
+   	
+2.)
+	
+    a) O SGBD pode definir o campo CodCategoria como NULL em todos os registros da tabela Cliente que referenciam a categoria excluída. Isso permite a exclusão da categoria, mas pode deixar registros na tabela Cliente com chaves estrangeiras nulas, o que pode ser útil em alguns contextos.
+    
+    b) O SGBD pode verificar se o código do fornecedor foi alterado na tupla da tabela Produto e, em caso afirmativo, atualizar automaticamente o campo CodFornec em todos os registros da tabela Produto que referenciam o fornecedor alterado. Isso garante que as referências permaneçam consistentes, refletindo a nova chave primária do fornecedor, sem deixar registros órfãos ou inconsistentes.
+    
+ 
+ 3.) 
+	* Tabela Banco:
+	  - CodBanco (PK)
+	  - NomeBanco
+	  - EnderecoBanco
+
+       * Tabela Agencia:
+	  - CodAgencia (PK)
+	  - CodBanco (FK)
+	  - NumeroAgencia
+	  - EnderecoAgencia
+
+	* Tabela Cliente:
+	  - CPF (PK)
+	  - NomeCliente
+	  - EnderecoCliente
+	  - TelefoneCliente
+
+	* Tabela Conta:
+	  - NumConta (PK)
+	  - TipoConta
+	  - Saldo
+	  - CPF (FK)
+	  - CodAgencia (FK)
+
+	* Tabela Emprestimo:
+	  - NumEmprestimo (PK)
+	  - ValorEmprestimo
+	  - CPF (FK)
+	  - CodAgencia (FK)
+
