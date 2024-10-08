@@ -1,0 +1,174 @@
+void setup() {
+    Serial.begin(9600);
+    pinMode(13, OUTPUT);
+    pinMode(12, OUTPUT);
+    pinMode(11, OUTPUT);
+    pinMode(10, OUTPUT);
+}
+
+void setLeds(const String& result) {
+    for (int i = 0; i < 4; i++) {
+        digitalWrite(13 - i, result[i] == '1' ? HIGH : LOW);
+    }
+}
+
+class VonNeumannMachine {
+private:
+    String memory[100];
+    int currentMemorySize;
+    const int PC = 0, W = 1, X = 2, Y = 3;
+
+public:
+    VonNeumannMachine() : currentMemorySize(4) {
+        for (int i = 0; i < 4; i++) {
+            memory[i] = "0";  // Inicializa memória base
+        }
+    }
+
+    // Funções de acesso à memória
+    String getPC() const { return memory[PC]; }
+    void setPC(const String& newPC) { memory[PC] = newPC; }
+
+    String getX() const { return memory[X]; }
+    void setX(const String& newX) { memory[X] = newX; }
+
+    String getY() const { return memory[Y]; }
+    void setY(const String& newY) { memory[Y] = newY; }
+
+    String getW() const { return memory[W]; }
+    void setW(const String& newW) { memory[W] = newW; }
+
+    bool registerOperation(const String& expression) {
+        if (currentMemorySize < 100) {
+            memory[currentMemorySize++] = expression;
+            return true;
+        }
+        return false;
+    }
+
+    void operate() {
+        for (int i = 4; i < currentMemorySize; i++) {
+            const String& temp = memory[i];
+            setPC(String(i));
+            setX(temp[0]);
+            setY(temp[1]);
+
+            String var0 = fromHexaToBinary(temp[0]);
+            String var1 = fromHexaToBinary(temp[1]);
+            String result = operate(var0, var1, temp[2]);
+            setW(fromBinaryToHexa(result));
+
+            printMemory();
+            Serial.println(result);
+            setLeds(result);
+            delay(3000);
+        }
+    }
+
+    void printMemory() const {
+        for (int i = 0; i < currentMemorySize; i++) {
+            Serial.print(memory[i] + " ");
+        }
+        Serial.println();
+    }
+
+private:
+    String operate(const String& var0, const String& var1, char opCode) {
+        String result = "";
+        for (int i = 0; i < 4; i++) {
+            result += executeOperation(var0[i], var1[i], opCode);
+        }
+        return result;
+    }
+
+    char executeOperation(char a, char b, char opCode) {
+        switch (opCode) {
+            case '0': return orGate(a, notGate(a));
+            case '1': return orGate(a, notGate(b));
+            case '2': return andGate(a, a);
+            case '3': return xorGate(notGate(a), notGate(b));
+            case '4': return notGate(andGate(a, b));
+            case '5': return notGate(a);
+            case '6': return andGate(a, notGate(b));
+            case '7': return orGate(notGate(a), notGate(b));
+            case '8': return xorGate(a, b);
+            case '9': return andGate(a, notGate(a));
+            case 'A': return andGate(b, b);
+            case 'B': return andGate(a, b);
+            case 'C': return notGate(b);
+            case 'D': return notGate(andGate(notGate(a), b));
+            case 'E': return orGate(a, b);
+            case 'F': return andGate(notGate(a), b);
+            default: return '0';
+        }
+    }
+
+    String fromHexaToBinary(char value) const {
+        switch (value) {
+            case '0': return "0000";
+            case '1': return "0001";
+            case '2': return "0010";
+            case '3': return "0011";
+            case '4': return "0100";
+            case '5': return "0101";
+            case '6': return "0110";
+            case '7': return "0111";
+            case '8': return "1000";
+            case '9': return "1001";
+            case 'A': return "1010";
+            case 'B': return "1011";
+            case 'C': return "1100";
+            case 'D': return "1101";
+            case 'E': return "1110";
+            case 'F': return "1111";
+            default: return "0000";
+        }
+    }
+
+    char fromBinaryToHexa(const String& value) const {
+        if (value == "0000") return '0';
+        if (value == "0001") return '1';
+        if (value == "0010") return '2';
+        if (value == "0011") return '3';
+        if (value == "0100") return '4';
+        if (value == "0101") return '5';
+        if (value == "0110") return '6';
+        if (value == "0111") return '7';
+        if (value == "1000") return '8';
+        if (value == "1001") return '9';
+        if (value == "1010") return 'A';
+        if (value == "1011") return 'B';
+        if (value == "1100") return 'C';
+        if (value == "1101") return 'D';
+        if (value == "1110") return 'E';
+        if (value == "1111") return 'F';
+        return '0';
+    }
+
+    char andGate(char a, char b) const { return (a == '1' && b == '1') ? '1' : '0'; }
+    char orGate(char a, char b) const { return (a == '1' || b == '1') ? '1' : '0'; }
+    char notGate(char a) const { return a == '1' ? '0' : '1'; }
+    char xorGate(char a, char b) const { return (a != b) ? '1' : '0'; }
+};
+
+void loop() {
+    VonNeumannMachine machine;
+    while (true) {
+        if (Serial.available() >= 3) {
+            String x = String((char)Serial.read());
+            String y = String((char)Serial.read());
+            String w = String((char)Serial.read());
+            String expression = x + y + w;
+
+            Serial.println(expression);
+            machine.registerOperation(expression);
+
+            if (machine.getPC().toInt() >= 1) {
+                machine.operate();
+            }
+
+            delay(10);
+            while (Serial.available()) Serial.read();  // Limpar o buffer
+        }
+    }
+}
