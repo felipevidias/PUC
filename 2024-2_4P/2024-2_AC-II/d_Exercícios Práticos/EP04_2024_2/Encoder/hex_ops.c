@@ -44,7 +44,7 @@ void process_file(const char *file_path)
     FILE *file = fopen(file_path, "r");
     if (file == NULL)
     {
-        printf("Erro ao abrir o arquivo.\n");
+        printf("Erro ao abrir o arquivo: %s\n", file_path); // Exibe o caminho do arquivo
         return;
     }
 
@@ -93,7 +93,7 @@ void process_file(const char *file_path)
 
 int main()
 {
-    const char *file_path = "instrucoes.txt";
+    const char *file_path = "instrucoes.txt"; // Ou use o caminho completo
     process_file(file_path);
     return 0;
 }
