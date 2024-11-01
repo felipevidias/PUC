@@ -1,37 +1,44 @@
-import mysql.connector  # type: ignore
+import pyodbc
 from colorama import Fore, Style, init
 
-# Inicializa o colorama
-init(autoreset=True)
+# Dados da conexão
+server = 'bancofilmes.database.windows.net'
+database = 'DB_Filmes'
+username = 'adm'
+password = '!Filmes123'
+driver = '{ODBC Driver 17 for SQL Server}'
 
-# Configuração da conexão com o banco de dados
-db_config = {
-    'host': 'bancofilmes.database.windows.net',
-    'port': '1433',
-    'user': 'adm',
-    'password': '!Filmes123',
-    'database': 'DB_FIlmes',
-    'connection_timeout': 5
-}
+# String de conexão
+connection_string = f'DRIVER={driver};SERVER={server};DATABASE={database};UID={username};PWD={password};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;'
 
-# Conexão com o banco de dados
+# Conectando e executando uma consulta
 try:
-    connection = mysql.connector.connect(**db_config)
-    cursor = connection.cursor()
-    print(Fore.BLUE + "DEU BAO!!!")
-except mysql.connector.Error as err:
-    print(Fore.RED + f"DEU RUIM: {err}")
-    exit()
+    # Conectar ao banco de dados
+    conn = pyodbc.connect(connection_string)
+    cursor = conn.cursor()
+except pyodbc.Error as e:
+    print("Erro ao conectar ao banco de dados:", e)
+
 
 # Criar tabelas dos filmes
 def create_table():
-    cursor.execute('''CREATE TABLE IF NOT EXISTS filmes(
-                      id INT AUTO_INCREMENT PRIMARY KEY,
-                      titulo VARCHAR(100) NOT NULL,
-                      diretor VARCHAR(100),
-                      ano INT,
-                      genero VARCHAR(50))''')
-    connection.commit()
+    # Criar a tabela se não existir
+        cursor.execute('''
+            IF NOT EXISTS (
+                SELECT * FROM INFORMATION_SCHEMA.TABLES 
+                WHERE TABLE_NAME = 'filmes'
+            )
+            BEGIN
+                CREATE TABLE filmes (
+                    id INT IDENTITY(1,1) PRIMARY KEY,
+                    titulo VARCHAR(100) NOT NULL,
+                    diretor VARCHAR(100),
+                    ano INT,
+                    genero VARCHAR(50)
+                );
+            END;
+        ''')
+        conn.commit()
 
 # Função para criar filme novo
 def create_filme():
@@ -41,8 +48,13 @@ def create_filme():
     genero = input("Digite o genero: ")
 
     # Inserir filme na tabela
-    cursor.execute("INSERT INTO filmes(titulo, diretor, ano, genero) VALUES(%s, %s, %s, %s)", (titulo, diretor, ano, genero))
-    connection.commit()
+    # Inserir dados na tabela
+    insert_query = '''
+        INSERT INTO filmes (titulo, diretor, ano, genero)
+        VALUES (?, ?, ?, ?);
+    '''
+    cursor.execute(insert_query, (titulo, diretor, ano, genero))
+    conn.commit()
     print(Fore.BLUE + "DEU BAO DA SILVA JR!")
 
 # Função para mostrar os filmes
@@ -62,21 +74,48 @@ def atualizar_filme():
     novo_ano = input("Novo Ano: ")
     novo_genero = input("Novo Genero:")
 
-    cursor.execute('''UPDATE filmes SET titulo = %s,
-                      diretor = %s,
-                      ano = %s,
-                      genero = %s WHERE id = %s''',
-                   (novo_titulo, novo_diretor, novo_ano, novo_genero, filme_id))
-    connection.commit()
+    # Construir a consulta de atualização dinamicamente
+    update_fields = []
+    params = []
+
+    if novo_titulo:
+        update_fields.append("titulo = ?")
+        params.append(novo_titulo)
+    if novo_diretor:
+        update_fields.append("diretor = ?")
+        params.append(novo_diretor)
+    if novo_ano:
+        update_fields.append("ano = ?")
+        params.append(novo_ano)
+    if novo_genero:
+        update_fields.append("genero = ?")
+        params.append(novo_genero)
+
+    # Verificar se há campos a atualizar
+    if not update_fields:
+        print("Nenhum campo fornecido para atualizar.")
+        return
+
+    # Adicionar o ID aos parâmetros e construir a consulta final
+    params.append(filme_id)
+    update_query = f"UPDATE filmes SET {', '.join(update_fields)} WHERE id = ?"
+
+    # Executar a atualização
+    cursor.execute(update_query, params)
+    conn.commit()
+
     print(Fore.BLUE + "Filme atualizado")
 
 # Função para deletar o filme
 def delete_filme():
     list_filme()
     filme_id = int(input("Digite o ID que deseja deletar: "))
-    cursor.execute("DELETE FROM filmes WHERE id = %s", (filme_id,))
-    connection.commit()
-    print(Fore.RED + "Filme deletado")
+    # Consulta de exclusão
+    delete_query = "DELETE FROM filmes WHERE id = ?"
+    cursor.execute(delete_query, (filme_id,))
+    conn.commit()
+
+    print(f"Filme com ID {id} deletado com sucesso.")
 
 # Menu principal
 def menu():
@@ -105,9 +144,13 @@ def menu():
         else:
             print(Fore.RED + "Opcao Invalida")
 
-# Executando o menu
-menu()
+try:
+    # Executando o menu
+    menu()
 
-# Fechando a conexão com o banco de dados
-cursor.close()
-connection.close()
+    # Fechando a conexão com o banco de dados
+    cursor.close()
+    conn.close()
+except pyodbc.Error as e:
+    print("Erro a mexer no BD:", e)
+
